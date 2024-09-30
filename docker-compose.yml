@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  app:
+    image: php8_ready
+    container_name: php8_ready
+    restart: unless-stopped
+    hostname: php8_ready
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8484:80
+    networks:
+      - network
+    #  FOR PRODUCTION THIS PART NEEDS TO BE OMITTED
+    volumes:
+      - ./:/app
+
+networks:
+  network:
+    driver: bridge
